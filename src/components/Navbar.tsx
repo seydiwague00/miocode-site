@@ -2,9 +2,7 @@
 
 import {useState} from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {usePathname} from 'next/navigation';
-import MiocodeLogoImage from '@/app/images/miocode-logo.png';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

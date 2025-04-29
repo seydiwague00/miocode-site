@@ -10,10 +10,8 @@ const nextConfig = {
             },
         ],
     },
-    i18n: {
-        locales: ['fr'],
-        defaultLocale: 'fr',
-    },
+    // i18n config is deprecated in App Router, using middleware instead
+    // See: https://nextjs.org/docs/app/building-your-application/routing/internationalization
     output: 'standalone',
     reactStrictMode: true,
     optimizeFonts: true,

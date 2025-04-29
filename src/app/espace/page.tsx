@@ -19,7 +19,7 @@ export default function ClientAreaPage() {
     acceptTerms: false,
   });
 
-  const handleLoginChange = (e) => {
+  const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setLoginData(prevState => ({
       ...prevState,
@@ -27,7 +27,7 @@ export default function ClientAreaPage() {
     }));
   };
 
-  const handleRegisterChange = (e) => {
+  const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setRegisterData(prevState => ({
       ...prevState,
@@ -35,13 +35,13 @@ export default function ClientAreaPage() {
     }));
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // In a real application, you would send the login data to your backend
     alert('Connexion réussie! Dans une application réelle, vous seriez redirigé vers votre tableau de bord.');
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // In a real application, you would send the registration data to your backend
     alert('Inscription réussie! Dans une application réelle, vous seriez redirigé vers votre tableau de bord.');
