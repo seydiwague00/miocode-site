@@ -66,7 +66,7 @@ export default function ServicesPage() {
                 </div>
               </div>
               <div className="mt-8">
-                <Link href="/services/dev-web" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all transform hover:scale-105 shadow-md inline-block">
+                <Link href="/services/dev-web" className="px-6 py-3 mb-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all transform hover:scale-105 shadow-md inline-block">
                   En savoir plus
                 </Link>
               </div>
