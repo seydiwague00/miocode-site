@@ -1,79 +1,26 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const NavigationStateTracker = ({
-                                    onNavigationStart,
-                                    onNavigationComplete,
-                                }: {
-    onNavigationStart: () => void;
-    onNavigationComplete: () => void;
-}) => {
-    const pathname = usePathname();
-    const router = useRouter();
-
-    useEffect(() => {
-        const handleStart = () => {
-            onNavigationStart();
-        };
-        const handleComplete = () => {
-            onNavigationComplete();
-        };
-
-        // On écoute les changements d'URL
-        router.events?.on('routeChangeStart', handleStart);
-        router.events?.on('routeChangeComplete', handleComplete);
-        router.events?.on('routeChangeError', handleComplete);
-
-        return () => {
-            router.events?.off('routeChangeStart', handleStart);
-            router.events?.off('routeChangeComplete', handleComplete);
-            router.events?.off('routeChangeError', handleComplete);
-        };
-    }, [router, onNavigationStart, onNavigationComplete]);
-
-    return null;
-};
-
 export default function LoadingProvider({ children }: { children: React.ReactNode }) {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const pathname = usePathname();
-    const router = useRouter();
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1000); // Temps initial de chargement
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    const handleNavigationStart = () => {
         setIsLoading(true);
-    };
 
-    const handleNavigationComplete = () => {
-        setIsLoading(false);
-    };
+        const timeout = setTimeout(() => {
+            setIsLoading(false);
+        }, 500); // durée simulée du chargement
 
-    // Vérification pour éviter la redirection infinie
-    useEffect(() => {
-        if (router.asPath !== pathname) {
-            router.push(pathname); // Simule un changement de route, mais seulement si l'URL est différente
-        }
-    }, [pathname, router]);
+        return () => clearTimeout(timeout);
+    }, [pathname]);
 
     return (
         <>
-            <Suspense fallback={null}>
-                <NavigationStateTracker
-                    onNavigationStart={handleNavigationStart}
-                    onNavigationComplete={handleNavigationComplete}
-                />
-            </Suspense>
-
+            <Suspense fallback={null} />
             <AnimatePresence mode="wait">
                 {isLoading ? (
                     <motion.div

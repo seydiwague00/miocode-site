@@ -1,3 +1,5 @@
+'use client';
+
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,7 +30,7 @@ export default function ContactPage() {
   };
 
   return (
-      <section className="container mx-auto p-4">
+      <section className="container mx-auto p-10">
         <h1 className="text-3xl font-semibold text-center mb-6">Contactez-nous</h1>
         <form
             onSubmit={handleSubmit(onSubmit)}
